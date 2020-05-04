@@ -16,7 +16,7 @@ createDatabase <- function(dbfile=.dbfile) {
     dbcon <- dbConnect(dbDriver("SQLite"), dbname=dbfile)
     on.exit(dbDisconnect(dbcon))
     dftypes <- list(host="text", datum="text", env="text", type="text",
-                    nobs="integer", nrun="integer")
+                    nobs="integer", nrun="integer", timing='numeric')
     sql <- sqlCreateTable(dbcon, "benchmark", fields=dftypes, row.names = FALSE)
     dbExecute(dbcon, sql)
 }
@@ -45,6 +45,6 @@ getBenchmarkData <- function(host, dbfile=.dbfile) {
     dbcon <- dbConnect(dbDriver("SQLite"), dbname=.dbfile)
     data <- dbGetQuery(dbcon, paste('select * from benchmark where host="',
                                     host, '" order by nobs', sep=""))
-    invisible(dbDisconnect(dbcon))
+    on.exit(dbDisconnect(dbcon))
     invisible(data)
 }
