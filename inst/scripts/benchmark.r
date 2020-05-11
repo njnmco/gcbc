@@ -67,7 +67,7 @@ ref <- as.numeric(system(cmd, intern=TRUE))
 # done
 
 #  R_LD_LIBRARY_PATH="$PWD/openblas:/usr/lib64/R/lib" OPENBLAS_NUM_THREADS=10 R
-# r(function()system.time(crossprod(matrix(1:1e9, ncol=1000))), env=c(rcmd_safe_env(), R_LD_LIBRARY_PATH="/home/nfultz/rcfg/openblas:/usr/lib64/R/lib", OPENBLAS_NUM_THREADS="3"))
+#r(function()system.time(crossprod(matrix(1:1e9, ncol=10000))), env=c(rcmd_safe_env(), R_LD_LIBRARY_PATH="/home/nfultz/rcfg/openblas-rh:/usr/lib64/R/lib", OPENBLAS_NUM_THREADS="1"))
 
 
 atlas      <- as.numeric(system(cmd,      intern=TRUE))
